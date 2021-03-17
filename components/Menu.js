@@ -46,11 +46,9 @@ function menuMaker(menuItems) {
     container.classList.toggle("menu--open");
     event.preventDefault();
     event.stopImmediatePropagation();
-    console.log("pressed", container)
     return container;
   })
   document.querySelector(".header").appendChild(container);
-  console.log(container);
 }
 
 menuMaker(menuItems);
