@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Being as awesome as Matthias',
+    date: 'A some point in 1613',
+    firstParagraph: `It won't end well for you.`,
+    secondParagraph: `Just stop, you are embarrassing yourself!`,
+    thirdParagraph: `Don't say I didn't warn you.`
   }
 ];
 
@@ -114,3 +121,41 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker (article) {
+  article.forEach(element => {
+    const container = document.createElement("div");
+    const title = document.createElement("h2");
+    const date = document.createElement("p");
+    const p1 = document.createElement("p");
+    const p2 = document.createElement("p");
+    const p3 = document.createElement("p");
+    const expandClose = document.createElement("span");
+    container.classList.add("article");
+    title.innerHTML = element.title;
+    date.classList.add("date");
+    date.innerHTML = element.date;
+    p1.innerHTML = element.firstParagraph;
+    p2.innerHTML = element.secondParagraph;
+    p3.innerHTML = element.thirdParagraph;
+    expandClose.classList.add("expandButton");
+    expandClose.innerHTML = "+";
+    container.appendChild(title);
+    container.appendChild(date);
+    container.appendChild(p1);
+    container.appendChild(p2);
+    container.appendChild(p3);
+    container.appendChild(expandClose);
+    console.log(container);
+    expandClose.addEventListener("click", (event) => {
+      container.classList.toggle("article-open");
+      event.stopImmediatePropagation();
+      event.preventDefault();
+      return container;
+    })
+    document.querySelector(".articles").appendChild(container);
+  });
+
+  return
+}
+
+articleMaker(data);
